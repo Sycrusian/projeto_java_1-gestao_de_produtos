@@ -12,7 +12,7 @@ public class ProductController {
             if (payload.getPriceInCents() <= 0)
                 throw new NegativePriceException("O preço do produto precisa ser um número positivo.");
             products.add(payload);
-            return String.format("Produto % adicionado.", payload.getName());
+            return String.format("Produto %s adicionado.", payload.getName());
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return e.getMessage();
@@ -25,9 +25,9 @@ public class ProductController {
 
     public int retrievePrice(String barCode) {
         try {
-            ProductModel foundProduct = products.stream().filter(product -> product.getBarCode() == barCode).findFirst().orElse(null);
+            ProductModel foundProduct = products.stream().filter(product -> product.getBarCode().equals(barCode)).findFirst().orElse(null);
             if (foundProduct == null)
-                throw new NotFoundException(String.format("Product % not found.", barCode));
+                throw new NotFoundException(String.format("Product %s not found.", barCode));
             return foundProduct.getPriceInCents();
         } catch (Exception e) {
             System.out.println(e.getMessage());
