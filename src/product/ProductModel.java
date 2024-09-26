@@ -1,7 +1,7 @@
 package product;
 
 public class ProductModel {
-    private String barCode;
+    private final String barCode;
     private String name;
     private int priceInCents;
     private int stock;
